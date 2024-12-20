@@ -6,6 +6,8 @@ Trained model: https://drive.google.com/drive/folders/1YEmm0SniMUmwC--PedwjBorrZ
 
 This project is a Sentiment Analysis Web Application designed to analyze the sentiment of input text. It uses a trained sentiment analysis model to classify text into positive, neutral, or negative categories with associated probabilities. This web app provides an easy-to-use interface for users to input text and view the sentiment analysis result in real-time.
 
+Sentiment_analysis.ipynb contains the code in which the model was trained
+
 # Features
 Sentiment Analysis: The core feature of the app is analyzing text and classifying it as positive, neutral, or negative with corresponding probabilities.
 Real-time Results: Users can see the analysis result immediately after entering the text.
