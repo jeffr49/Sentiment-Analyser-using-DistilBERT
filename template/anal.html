@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentiment Analysis Result</title>
+    <style>
+        body {
+            background-color: #222;
+            color: white;
+            font-family: Arial, sans-serif;
+            background-image: url('static/img3.jpg');
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            width: 80%;
+            max-width: 600px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Center everything vertically */
+            align-items: center; /* Center horizontally */
+            height: auto;
+        }
+        .result-container {
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.8);
+            margin-top: 20px;
+            text-align: left;  /* Align text to the left inside the box */
+            width: 100%; /* Ensure it doesn't take up the whole screen */
+            max-width: 600px;
+        }
+        .result-container h1 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        .result-container p {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        .result-container .probabilities {
+            font-size: 1rem;
+            margin-top: 20px;
+            text-align: right;  /* Right-align probabilities */
+        }
+        .input-text {
+            font-weight: bold;
+        }
+        .back-button {
+            background-color: #444;
+            color: white;
+            border: none;
+            padding: 5px 15px; /* Reduced padding for a smaller button */
+            margin-top: 10px;  /* Reduced margin to bring button closer */
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 0.9rem;  /* Smaller font size */
+            width: auto; /* Ensure it does not span full width */
+        }
+        .back-button:hover {
+            background-color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Title Above the Box -->
+        <h1>Sentiment Analysis Result</h1>
+        
+        <div class="result-container">
+            <!-- Display the input text in bold -->
+            <p><strong>Input Text:</strong> <span class="input-text" id="input-text"></span></p>
+            
+            <p id="result-text">Loading...</p>
+            
+            <div class="probabilities">
+                <p><strong>Negative:</strong> <span id="negative-prob"></span></p>
+                <p><strong>Neutral:</strong> <span id="neutral-prob"></span></p>
+                <p><strong>Positive:</strong> <span id="positive-prob"></span></p>
+            </div>
+        </div>
+
+        <!-- Go Back button positioned closer to the result box -->
+        <button class="back-button" onclick="window.history.back()">Go Back</button>
+    </div>
+
+    <script>
+        // Get the text parameter from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const text = urlParams.get('text');
+        
+        fetch(`/analyze?text=${encodeURIComponent(text)}`)
+            .then(response => response.json())
+            .then(data => {
+                // Update the result text, input text, and probabilities
+                document.getElementById('input-text').innerText = text;  // Display input text
+                document.getElementById('result-text').innerText = data.result.text;
+                document.getElementById('negative-prob').innerText = data.result.probabilities.negative.toFixed(4);
+                document.getElementById('neutral-prob').innerText = data.result.probabilities.neutral.toFixed(4);
+                document.getElementById('positive-prob').innerText = data.result.probabilities.positive.toFixed(4);
+            })
+            .catch(error => {
+                document.getElementById('result-text').innerText = 'Error: Could not analyze sentiment.';
+            });
+    </script>
+</body>
+</html>
