@@ -39,3 +39,8 @@ TensorFlow or PyTorch (for the sentiment analysis model)
 scikit-learn (if you're using additional tools for model preprocessing)  
 Numpy and Pandas (for data manipulation)  
 
+# Final training metrics
+Training loss: 0.178  
+Validation loss: 0470  
+Accuracy: 0.865  
+
