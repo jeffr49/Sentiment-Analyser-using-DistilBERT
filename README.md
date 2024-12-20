@@ -29,8 +29,9 @@ This project was built to provide an easy-to-use web interface for sentiment ana
 # Prerequisites
 Before running the application, make sure you have the following installed:
 
-Python 3.x (preferably the latest version)
-Flask: Python web framework to run the server
-TensorFlow or PyTorch (for the sentiment analysis model)
-scikit-learn (if you're using additional tools for model preprocessing)
-Numpy and Pandas (for data manipulation)
+Python 3.x (preferably the latest version)  
+Flask: Python web framework to run the server  
+TensorFlow or PyTorch (for the sentiment analysis model)  
+scikit-learn (if you're using additional tools for model preprocessing)  
+Numpy and Pandas (for data manipulation)  
+
